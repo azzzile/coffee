@@ -3,15 +3,23 @@ import sqlite3
 
 from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow, QApplication,\
-    QTableWidgetItem
+    QTableWidgetItem, QDialog
+
+
+class AddEditCoffee(QDialog):
+    def __init__(self):
+        super().__init__()
+        uic.loadUi('addEditCoffeeForm.ui', self)
 
 
 class Example(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi('main.ui', self)
-        self.con = sqlite3.connect('coffee.db')
+        self.con = sqlite3.connect('coffee.sqlite')
         self.pushButton.clicked.connect(self.load_table)
+        self.pushButton_2.clicked.connect(self.note)
+        self.pushButton_3.clicked.connect(self.edit)
         self.load_table()
 
     def load_table(self):
@@ -27,6 +35,12 @@ class Example(QMainWindow):
                 self.tableWidget.setItem(
                     i, j, QTableWidgetItem(str(elem)))
 
+    def add(self):
+        pass
+
+    def edit(self):
+        pass
+
     def closeEvent(self, event):
         self.con.close()
 
@@ -37,6 +51,7 @@ def except_hook(cls, exception, traceback):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ex = Example()
-    ex.show()
+    form = Example()
+    form.show()
+    sys.excepthook = except_hook
     sys.exit(app.exec())
