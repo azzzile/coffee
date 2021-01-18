@@ -34,6 +34,9 @@ class Example(QMainWindow):
             for j, elem in enumerate(row):
                 self.tableWidget.setItem(
                     i, j, QTableWidgetItem(str(elem)))
+                
+    def note(self):
+        pass
 
     def add(self):
         pass
