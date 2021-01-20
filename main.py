@@ -77,8 +77,6 @@ class Example(QMainWindow):
             self.extra.close()
             self.statusBar().showMessage('не возможно провести изменения', 5000)
 
-
-
     def edit(self):
         e = self.extra
         title, taste = e.lineEdit.text(), e.lineEdit_2.text()
